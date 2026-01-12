@@ -26,7 +26,7 @@ const formHeadSchema = z.object({
         message: "Description must be at least 3 characters."
     }).max(255,{
         message: "Description cannot be longer than 255 characters."
-    }),
+    }).optional(),
 })
 
 type FormHeadFormType = z.infer<typeof formHeadSchema>;
@@ -36,7 +36,8 @@ const FormHeadForm = () => {
     const form = useForm<FormHeadFormType>({
         resolver: zodResolver(formHeadSchema),
         defaultValues: {
-            title: 'New Form'
+            title: 'New Form',
+            description: undefined
         }
     })
 
